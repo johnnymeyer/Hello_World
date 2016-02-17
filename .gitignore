@@ -32,7 +32,7 @@ proguard/
 captures/
 
 # Android Studio
-*.iml
+#*.iml
 .idea
 
 #NDK
