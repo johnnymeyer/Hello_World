@@ -49,7 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+<<<<<<< HEAD
 
 // what up man??
+=======
+    // adding above this
+// whatever I want
+//Batman for the win!!!
+>>>>>>> 5f870d51e2d863cd2b16b64e9bb8bdde9e2dec28
     // Klentons comments
 }
