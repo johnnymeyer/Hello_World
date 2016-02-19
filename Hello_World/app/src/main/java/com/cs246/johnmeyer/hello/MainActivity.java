@@ -64,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
             case MotionEvent.ACTION_UP:
                 x2 = event.getX();
                 float deltaX = x2 - x1;
-
+                System.out.println("Inside!");
                 if (Math.abs(deltaX) > MIN_DISTANCE)
                 {
+
                     // Left to Right swipe action
                     if (x2 > x1)
                     {
@@ -80,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     // Right to left swipe action
-                    else
+                    else if (x2 < x1)
                     {
+                        x1 = x2;
                         startActivity(new Intent(MainActivity.this, TableOfContents.class));
                     }
 
