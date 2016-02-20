@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TableOfContents extends AppCompatActivity {
-    private String [] content = {"Loops", "\t\t\t\t\t- For Loops", "\t\t\t\t\t- While Loops",
+    final private String [] CONTENT = {"Loops", "\t\t\t\t\t- For Loops", "\t\t\t\t\t- While Loops",
             "\t\t\t\t\t- Do-While Loops", "Functions", "\t\t\t\t\t- Calling a Function",
             "\t\t\t\t\t- Pass By Reference", "\t\t\t\t\t- Pass By Value", "\t\t\t\t\t- Why Functions?"};
     private List <String> layout;
@@ -28,7 +28,7 @@ public class TableOfContents extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_of_contents);
-        layout = new ArrayList<>(Arrays.asList(content));
+        layout = new ArrayList<>(Arrays.asList(CONTENT));
         adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
