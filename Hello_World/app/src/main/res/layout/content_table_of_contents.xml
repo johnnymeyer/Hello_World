@@ -10,18 +10,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.cs246.johnmeyer.hello.TableOfContents"
-    tools:showIn="@layout/activity_table_of_contents">
+    tools:showIn="@layout/activity_table_of_contents"
+    android:background="#ffffff">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Table Of Contents"
         android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:textSize="35dp"
         android:textColor="#000000"
-        android:enabled="true" />
+        android:enabled="true"
+        android:layout_centerHorizontal="true" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -30,5 +30,6 @@
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:clickable="false"
-        android:contextClickable="false" />
+        android:contextClickable="false"
+        android:background="#ffffff" />
 </RelativeLayout>
