@@ -34,7 +34,6 @@ public class Page extends AppCompatActivity {
     }
 
     public void setMyTitle(String myTitle) {
-
         title = myTitle;
 
     }

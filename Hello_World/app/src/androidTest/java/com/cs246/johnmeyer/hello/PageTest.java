@@ -7,11 +7,13 @@ import static junit.framework.Assert.assertNotNull;
  */
 public class PageTest {
     public void getMyTitleTest() {
-       // assertNotNull((new Page().getMyTitle()));
-
+        Page test = new Page();
+        assertNull(test.getMyTitle());
     }
 
     public void setMyTitleTest() {
-        assertNotNull((new Page().getMyTitle()));
+        Page test = new Page();
+        test.setMyTitle("Page 1");
+        assertNotNull((test.getMyTitle()));
     }
 }
