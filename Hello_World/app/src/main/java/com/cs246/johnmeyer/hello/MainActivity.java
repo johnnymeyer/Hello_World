@@ -16,6 +16,8 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import static junit.framework.Assert.assertEquals;
+
 public class MainActivity extends AppCompatActivity {
 
     private float x1,x2;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     // Left to Right swipe action
                     if (x2 > x1)
                     {
+                        x1 = x2;
                         Toast output = Toast.makeText(this, "Created By:\nWellesley Shumway"
                                         + "\nKlenton Stone"
                                         + "\nJohn Meyer"
