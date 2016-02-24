@@ -8,6 +8,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 /**
@@ -22,12 +23,17 @@ public class TOCTests {
     }
 
     @Test
-    public void testAdapter() {
-        assertNotNull(((new TableOfContents()).adapter));
+    public void testNextPageIndicator(){
+       assertEquals((new TableOfContents()).getNextPageIndicator(), 2);
     }
 
     @Test
-    public void testListView() {
-        assertNotNull(((ListView)(new TableOfContents()).findViewById(R.id.listView)).getAdapter());
+    public void testListLayout() {
+        assertNotNull((new TableOfContents()).getLayout());
+    }
+
+    @Test
+    public void testAdapter() {
+        assertNotNull((new TableOfContents()).getAdapter());
     }
 }
