@@ -22,7 +22,7 @@ public class TableOfContents extends AppCompatActivity {
             "\t\t\t\t\t- Do-While Loops", "Functions", "\t\t\t\t\t- Calling a Function",
             "\t\t\t\t\t- Pass By Reference", "\t\t\t\t\t- Pass By Value", "\t\t\t\t\t- Why Functions?"};
     private List <String> layout;
-    private ArrayAdapter <String> adapter;
+    public ArrayAdapter <String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
