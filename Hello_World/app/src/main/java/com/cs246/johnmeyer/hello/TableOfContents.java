@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TableOfContents extends AppCompatActivity {
-    final private String [] CONTENT = {"Loops", "\t\t\t\t\t- For Loops", "\t\t\t\t\t- While Loops",
+    final public String [] CONTENT = {"Loops", "\t\t\t\t\t- For Loops", "\t\t\t\t\t- While Loops",
             "\t\t\t\t\t- Do-While Loops", "Functions", "\t\t\t\t\t- Calling a Function",
             "\t\t\t\t\t- Pass By Reference", "\t\t\t\t\t- Pass By Value", "\t\t\t\t\t- Why Functions?"};
     private List <String> layout;
