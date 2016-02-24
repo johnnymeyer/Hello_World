@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_table__of__contents">Table_Of_Contents</string>
     <string name="title_activity_table_of_contents">TableOfContents</string>
+    <string name="title_activity_page_instance">PageInstance</string>
+    <string name="title_activity_page">Page</string>
 </resources>

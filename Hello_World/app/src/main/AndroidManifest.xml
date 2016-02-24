@@ -25,6 +25,10 @@
         <activity
             android:name=".TableOfContents"
             android:label="@string/title_activity_table_of_contents"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Page"
+            android:label="@string/title_activity_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
