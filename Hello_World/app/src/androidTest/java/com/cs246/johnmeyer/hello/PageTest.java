@@ -16,4 +16,15 @@ public class PageTest {
         test.setMyTitle("Page 1");
         assertNotNull((test.getMyTitle()));
     }
+
+    public void test-getContent() {
+        Page test = new Page();
+        assertNull(test.getContent());
+    }
+
+    public void test-fetchContent() {
+        Page test = new Page();
+        test.fetchContent();
+        assertNotNull(test.getContent());
+    }
 }

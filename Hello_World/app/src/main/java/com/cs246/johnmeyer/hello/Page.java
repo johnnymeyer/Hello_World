@@ -37,4 +37,21 @@ public class Page extends AppCompatActivity {
         title = myTitle;
 
     }
+
+    public String getContent(){
+        return content;
+    }
+
+    public void setContent(String myContent) {
+        content = myContent;
+    }
+
+    public void fetchContent() {
+
+        if (title != null) {
+            String newContent = null;
+            //set string to material
+            setContent(newContent);
+        }
+    }
 }
