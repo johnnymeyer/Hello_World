@@ -100,11 +100,5 @@ public class MainActivity extends AppCompatActivity {
     public void tableOfContents(View v) {
         startActivity(new Intent(MainActivity.this, TableOfContents.class));
     }
-    // very very dark gray
-    // hello
-    // Return fire
-    // adding above this
-// whatever I want
-//Batman for the win!!!
-    // Klentons comments
+
 }
