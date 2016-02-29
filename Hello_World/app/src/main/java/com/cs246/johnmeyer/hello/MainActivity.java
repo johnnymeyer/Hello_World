@@ -1,6 +1,10 @@
 package com.cs246.johnmeyer.hello;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,20 +20,33 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
+
 import static junit.framework.Assert.assertEquals;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static SQLiteDatabase database;
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
+    private static String DB_PATH = "file:///android_asset/raw/sample/DBPages.db";
+    private static String DB_NAME ="DBPages.db";
+    public static DBInfo dbInfo = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((ImageView)findViewById(R.id.imageView)).setImageResource(R.drawable.glewfrontpage);
-/////I changed this
+        dbInfo = new DBInfo(this);
+        dbInfo.createDatabase();
 
+    }
+
+    private boolean checkDataBase()
+    {
+        File dbFile = new File(DB_PATH + DB_NAME);
+        return dbFile.exists();
     }
 
     @Override

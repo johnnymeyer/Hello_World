@@ -24,21 +24,21 @@ public class TableOfContents extends AppCompatActivity {
     final public String [] CONTENT = {"Loops", "\t\t\t\t\t- For Loops", "\t\t\t\t\t- While Loops",
             "\t\t\t\t\t- Do-While Loops", "Functions", "\t\t\t\t\t- Calling a Function",
             "\t\t\t\t\t- Pass By Reference", "\t\t\t\t\t- Pass By Value", "\t\t\t\t\t- Why Functions?"};
-    private List <String> layout = new ArrayList<>(Arrays.asList(CONTENT));
-    private ArrayAdapter <String> adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
+ //   private List <String> layout = new ArrayList<>(Arrays.asList(CONTENT));
+ //   private ArrayAdapter <String> adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
     private int nextPageIndicator = 2;
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
-
+/*
     public List<String> getLayout(){
         return layout;
     }
-
-    public ArrayAdapter <String> getAdapter()
+*/
+   /* public ArrayAdapter <String> getAdapter()
     {
         return adapter;
     }
-
+*/
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
@@ -88,7 +88,7 @@ public class TableOfContents extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_of_contents);
         ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(adapter);
+      //  listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(
 
