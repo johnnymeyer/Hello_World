@@ -26,21 +26,54 @@ import java.io.IOException;
 import static junit.framework.Assert.assertEquals;
 
 public class MainActivity extends AppCompatActivity {
-    public static SQLiteDatabase database;
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
     private static String DB_PATH = "file:///android_asset/raw/sample/DBPages.db";
     private static String DB_NAME ="DBPages.db";
     public static DBInfo dbInfo = null;
+    //A good practice is to define database field names as constants
+    private static final String TABLE_NAME = "Pages";
+    private static final String ID = "_id";
+    private static final String TITLE = "Title";
+    private static final String NEXT = "Next_Page";
+    private static final String PREV = "Prev_Page";
+    private static final String INFO =  "Info";
+    private static final String PIC = "Picture";
+
+
+    private SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ////
+        LoadDataBase dbOpenHelper = new LoadDataBase(this, DB_NAME);
+        database = dbOpenHelper.openDataBase();
+        ////
         setContentView(R.layout.activity_main);
         ((ImageView)findViewById(R.id.imageView)).setImageResource(R.drawable.glewfrontpage);
-        dbInfo = new DBInfo(this);
-        dbInfo.createDatabase();
+        fillFreinds();
+    //    dbInfo = new DBInfo(this);
+     //   dbInfo.createDatabase();
 
+
+    }
+
+    private void fillFreinds() {
+        Cursor friendCursor = database.query(TABLE_NAME, new String[] {ID,
+                TITLE}, null, null, null, null, TITLE);
+        friendCursor.moveToFirst();
+        Toast.makeText(this, "hey",
+                Toast.LENGTH_SHORT);
+        if(!friendCursor.isAfterLast()) {
+            do {
+                String name = friendCursor.getString(1);
+                System.out.println("Here: "  + name);
+                Toast.makeText(this, name,
+                        Toast.LENGTH_SHORT).show();
+            } while (friendCursor.moveToNext());
+        }
+        friendCursor.close();
     }
 
     private boolean checkDataBase()
@@ -69,13 +102,13 @@ public class MainActivity extends AppCompatActivity {
                     if (x2 > x1)
                     {
                         x1 = x2;
-                        Toast output = Toast.makeText(this, "Created By:\nWellesley Shumway"
+                        /*Toast output = Toast.makeText(this, "Created By:\nWellesley Shumway"
                                         + "\nKlenton Stone"
                                         + "\nJohn Meyer"
                                         + "\nEdward Doyle",
                                 Toast.LENGTH_SHORT);
                         output.setGravity(Gravity.CENTER, 0, 200);
-                        output.show();
+                        output.show();*/
                     }
 
                     // Right to left swipe action
@@ -100,5 +133,19 @@ public class MainActivity extends AppCompatActivity {
     public void tableOfContents(View v) {
         startActivity(new Intent(MainActivity.this, TableOfContents.class));
     }
+    //////////
+
+ //   private ListView listView;
+  //  private ArrayList friends;
+//
+
+//
+
+
+    //Extracting elements from the database
+
+
+
+
 
 }
