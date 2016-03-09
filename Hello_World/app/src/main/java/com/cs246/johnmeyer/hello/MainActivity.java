@@ -27,6 +27,7 @@ import java.io.IOException;
 import static junit.framework.Assert.assertEquals;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
     private static String DB_PATH = "file:///android_asset/raw/sample/DBPages.db";
@@ -61,8 +62,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fillFreinds() {
-        Cursor friendCursor = database.query(TABLE_NAME, new String[] {ID,
+        Log.i(TAG, "We are reaching the database query.");
+        Cursor friendCursor = database.query(TABLE_NAME, new String[]{ID,
                 TITLE}, null, null, null, null, TITLE);
+
+        if (friendCursor == null || friendCursor.equals(" "))
+        {
+            Log.e(this.getClass().toString(), "Error: Query Sting is null.");
+        }
         friendCursor.moveToFirst();
         Toast.makeText(this, "hey",
                 Toast.LENGTH_SHORT);
@@ -79,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean checkDataBase()
     {
+        Log.i(TAG, "DataBase is being created.");
         File dbFile = new File(DB_PATH + DB_NAME);
         return dbFile.exists();
     }
