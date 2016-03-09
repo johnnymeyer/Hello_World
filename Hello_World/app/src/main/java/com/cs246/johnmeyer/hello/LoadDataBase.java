@@ -46,8 +46,8 @@ public class LoadDataBase extends SQLiteOpenHelper {
             try {
                 copyDataBase();
             } catch (IOException e) {
-                Log.e(this.getClass().toString(), "Copying error");
-                throw new Error("Error copying database!");
+                Log.e(this.getClass().toString(), "Error copying ");
+               /// throw new Error("Error copying database!");
             }
         } else {
             Log.i(this.getClass().toString(), "Database already exists");

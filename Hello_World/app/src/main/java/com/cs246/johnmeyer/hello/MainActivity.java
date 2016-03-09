@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void tableOfContents(View v) {
         startActivity(new Intent(MainActivity.this, TableOfContents.class));
+        Log.i(this.getClass().toString(), "Loaded Table of Contents");
     }
     //////////
 
