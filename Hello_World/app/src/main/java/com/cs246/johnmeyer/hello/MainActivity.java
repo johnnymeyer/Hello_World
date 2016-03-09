@@ -102,13 +102,13 @@ public class MainActivity extends AppCompatActivity {
                     if (x2 > x1)
                     {
                         x1 = x2;
-                        /*Toast output = Toast.makeText(this, "Created By:\nWellesley Shumway"
+                        Toast output = Toast.makeText(this, "Created By:\nWellesley Shumway"
                                         + "\nKlenton Stone"
                                         + "\nJohn Meyer"
                                         + "\nEdward Doyle",
                                 Toast.LENGTH_SHORT);
                         output.setGravity(Gravity.CENTER, 0, 200);
-                        output.show();*/
+                        output.show();
                     }
 
                     // Right to left swipe action
