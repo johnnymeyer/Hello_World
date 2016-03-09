@@ -46,11 +46,11 @@ public class LoadDataBase extends SQLiteOpenHelper {
             try {
                 copyDataBase();
             } catch (IOException e) {
-
+                Log.e(this.getClass().toString(), "Copying error");
                 throw new Error("Error copying database!");
             }
         } else {
-
+            Log.i(this.getClass().toString(), "Database already exists");
         }
     }
 
@@ -62,7 +62,7 @@ public class LoadDataBase extends SQLiteOpenHelper {
             checkDb = SQLiteDatabase.openDatabase(path, null,
                     SQLiteDatabase.OPEN_READONLY);
         } catch (SQLException e) {
-
+            Log.e(this.getClass().toString(), "Error while checking db");
         }
         //Android doesn’t like resource leaks, everything should
         // be closed
@@ -93,6 +93,7 @@ public class LoadDataBase extends SQLiteOpenHelper {
         //Don’t forget to close the streams
         localDbStream.close();
         externalDbStream.close();
+
     }
 
     public SQLiteDatabase openDataBase() throws SQLException {
@@ -102,6 +103,7 @@ public class LoadDataBase extends SQLiteOpenHelper {
             database = SQLiteDatabase.openDatabase(path, null,
                     SQLiteDatabase.OPEN_READWRITE);
         }
+        Log.i(this.getClass().toString(), "Database has been successfully opened!");
         return database;
     }
 
