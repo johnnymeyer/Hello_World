@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -56,7 +57,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 copyDataBase();
 
             } catch (IOException e) {
-
+                Log.e(this.getClass().toString(), "Error in copying dataBase in DataBaseHelper.");
                 throw new Error("Error copying database");
 
             }
