@@ -46,11 +46,11 @@ public class LoadDataBase extends SQLiteOpenHelper {
             try {
                 copyDataBase();
             } catch (IOException e) {
-                Log.e(this.getClass().toString(), "Copying error");
+
                 throw new Error("Error copying database!");
             }
         } else {
-            Log.i(this.getClass().toString(), "Database already exists");
+
         }
     }
 
@@ -62,7 +62,7 @@ public class LoadDataBase extends SQLiteOpenHelper {
             checkDb = SQLiteDatabase.openDatabase(path, null,
                     SQLiteDatabase.OPEN_READONLY);
         } catch (SQLException e) {
-            Log.e(this.getClass().toString(), "Error while checking db");
+
         }
         //Android doesn’t like resource leaks, everything should
         // be closed
