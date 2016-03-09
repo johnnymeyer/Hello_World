@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.Touch;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -132,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void tableOfContents(View v) {
         startActivity(new Intent(MainActivity.this, TableOfContents.class));
+        Log.i(this.getClass().toString(), "Loaded Table of Contents");
     }
     //////////
 
