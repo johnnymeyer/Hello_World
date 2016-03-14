@@ -93,11 +93,12 @@ public class LoadDataBase extends SQLiteOpenHelper {
         //Don’t forget to close the streams
         localDbStream.close();
         externalDbStream.close();
-
+        Log.i(this.getClass().toString(), "DataBase copied");
     }
 
     public SQLiteDatabase openDataBase() throws SQLException {
         String path = DB_PATH + DB_NAME;
+
         if (database == null) {
             createDataBase();
             database = SQLiteDatabase.openDatabase(path, null,

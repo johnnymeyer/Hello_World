@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
-    private static String DB_PATH = "file:///android_asset/raw/sample/DBPages.db";
     private static String DB_NAME ="DBPages.db";
     public static DBInfo dbInfo = null;
     //A good practice is to define database field names as constants
@@ -82,13 +81,6 @@ public class MainActivity extends AppCompatActivity {
             } while (friendCursor.moveToNext());
         }
         friendCursor.close();
-    }
-
-    private boolean checkDataBase()
-    {
-        Log.i(TAG, "DataBase is being created.");
-        File dbFile = new File(DB_PATH + DB_NAME);
-        return dbFile.exists();
     }
 
     @Override
