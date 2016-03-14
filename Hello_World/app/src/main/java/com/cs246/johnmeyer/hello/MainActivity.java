@@ -32,18 +32,15 @@ public class MainActivity extends AppCompatActivity {
     static final int MIN_DISTANCE = 150;
     private static String DB_PATH = "file:///android_asset/raw/sample/DBPages.db";
     private static String DB_NAME ="DBPages.db";
-    public static DBInfo dbInfo = null;
     //A good practice is to define database field names as constants
-    private static final String TABLE_NAME = "Pages";
-    private static final String ID = "_id";
-    private static final String TITLE = "Title";
-    private static final String NEXT = "Next_Page";
+    public static final String TABLE_NAME = "Pages";
+    public static final String ID = "_id";
+    public static final String TITLE = "Title";
+    public static final String NEXT = "Next_Page";
     private static final String PREV = "Prev_Page";
     private static final String INFO =  "Info";
     private static final String PIC = "Picture";
-
-
-    private SQLiteDatabase database;
+    public static SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ((ImageView)findViewById(R.id.imageView)).setImageResource(R.drawable.glewfrontpage);
         fillFreinds();
-    //    dbInfo = new DBInfo(this);
-     //   dbInfo.createDatabase();
 
 
     }
@@ -66,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor friendCursor = database.query(TABLE_NAME, new String[]{ID,
                 TITLE}, null, null, null, null, TITLE);
 
-        if (friendCursor == null || friendCursor.equals(" "))
+        if (friendCursor == null)
         {
             Log.e(this.getClass().toString(), "Error: Query Sting is null.");
         }
