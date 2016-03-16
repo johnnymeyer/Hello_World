@@ -31,6 +31,13 @@ public class Page extends AppCompatActivity {
        //         ((ScrollView) findViewById(R.id.scrollView)).addView(contentCont);
     }
 
+    /**
+     * LoadPage- This function will load the page content by querying out to the database
+     * and pulling into our app the needed material.
+     *
+     * @param pageNum -This variable will give the page number to the LoadPage function so it
+     *                can load the correct page.
+     */
     public void loadPage(String pageNum){
         if (pageNum.equals("0"))
             finish();

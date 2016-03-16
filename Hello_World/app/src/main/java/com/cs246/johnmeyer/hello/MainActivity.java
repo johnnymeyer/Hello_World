@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String PIC = "Picture";
     public static SQLiteDatabase database;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
