@@ -6,16 +6,22 @@ import android.provider.BaseColumns;
  * Created by edoyle on 2/20/16.
  */
 public class PageData {
-    public PageData(){
+        private String nav_prev = "0";
+        private String nav_next = "0";
 
+    public void setNav_next(String nav_next) {
+        this.nav_next = nav_next;
     }
-    public static abstract class PageInfo implements BaseColumns{
-        public static final String PAGE_NAME = "page_name";
-        public static final String NAV_PREV = "page_name-1";
-        public static final String NAV_NEXT = "page_name-2";
 
+    public void setNav_prev(String nav_prev) {
+        this.nav_prev = nav_prev;
+    }
 
+    public String getNav_next() {
+        return nav_next;
+    }
 
-
+    public String getNav_prev() {
+        return nav_prev;
     }
 }

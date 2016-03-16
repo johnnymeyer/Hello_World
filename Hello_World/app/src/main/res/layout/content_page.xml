@@ -25,17 +25,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_above="@+id/button3"
-        android:layout_alignTop="@+id/textView3">
-
-        <LinearLayout
-            android:orientation="vertical"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="This will be the text from the database"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/button6"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="#000000" />
     </ScrollView>
 
     <Button
@@ -43,10 +45,11 @@
         android:layout_height="wrap_content"
         android:text="Next Page"
         android:id="@+id/button3"
+        android:layout_marginBottom="39dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="57dp" />
+        android:onClick="goNext" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -55,7 +58,8 @@
         android:text="TOC"
         android:id="@+id/button4"
         android:layout_alignTop="@+id/button3"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="tableOfContents" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -63,27 +67,10 @@
         android:layout_height="wrap_content"
         android:text="Prev Page"
         android:id="@+id/button5"
-        android:layout_alignTop="@+id/button4"
+        android:layout_below="@+id/scrollView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="goBack" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:id="@+id/button6"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="This will be the text from the database"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/button6"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

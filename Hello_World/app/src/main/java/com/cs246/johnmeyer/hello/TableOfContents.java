@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +28,7 @@ public class TableOfContents extends AppCompatActivity {
     private int nextPageIndicator = 2;
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
+    public static String pageNumber = null;
 
 /*
     public List<String> getLayout(){
@@ -103,10 +105,19 @@ public class TableOfContents extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String listPosition = String.valueOf(parent.getItemAtPosition(position));
                         listPosition = listPosition.trim().replace("- ", "");
-                        (Toast.makeText(getApplicationContext(), listPosition, Toast.LENGTH_SHORT)).show();
+                        loadPage(listPosition);
                     }
                 }
         );
+    }
+    void loadPage(String pageName){
+        String query = "Title=\"" + pageName.trim() + "\"";
+        Cursor friendCursor = MainActivity.database.query(MainActivity.TABLE_NAME, new String[]
+                {"_id"}, query, null, null, null, null);
+        friendCursor.moveToFirst();
+        String pageNum = friendCursor.getString(0);
+        pageNumber = pageNum;
+        startActivity(new Intent(TableOfContents.this, Page.class));
     }
 
 }
