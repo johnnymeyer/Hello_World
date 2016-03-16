@@ -74,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
         friendCursor.close();
     }
 
+    /**
+     * Function onTouchEvent
+     *
+     * This function handles the logic for swiping on the screen.
+     * This is used for swiping to switch between pages.
+     * @param event
+     * @return super.onTouchEvent
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
