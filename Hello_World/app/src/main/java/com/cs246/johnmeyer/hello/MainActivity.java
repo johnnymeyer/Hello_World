@@ -65,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
             Log.e(this.getClass().toString(), "Error: Query Sting is null.");
         }
         friendCursor.moveToFirst();
-        Toast.makeText(this, "hey",
-                Toast.LENGTH_SHORT);
+       // Toast.makeText(this, "hey",
+         //       Toast.LENGTH_SHORT);
         if(!friendCursor.isAfterLast()) {
             do {
                 String name = friendCursor.getString(1);
                 System.out.println("Here: "  + name);
-                Toast.makeText(this, name,
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, name,
+                       // Toast.LENGTH_SHORT).show();
             } while (friendCursor.moveToNext());
         }
         friendCursor.close();
