@@ -47,6 +47,10 @@ public class Page extends AppCompatActivity {
         }
     }
 
+    /**
+     * calls the load function for the previous page. This is used by the navigate back button.
+     * @param v the view that has been clicked.
+     */
     public void goBack(View v){
         loadPage(data.getNav_prev());
     }
