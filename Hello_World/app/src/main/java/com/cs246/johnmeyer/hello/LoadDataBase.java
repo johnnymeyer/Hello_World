@@ -41,6 +41,7 @@ public class LoadDataBase extends SQLiteOpenHelper {
     //This piece of code will create a database if it’s not yet created
     public void createDataBase() {
         boolean dbExist = checkDataBase();
+        dbExist =false;
         if (!dbExist) {
             this.getReadableDatabase();
             try {
