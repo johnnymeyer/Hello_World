@@ -1,8 +1,12 @@
 package com.cs246.johnmeyer.hello;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -20,11 +24,28 @@ public class Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         data = new PageData();
         setContentView(R.layout.activity_page);
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-      //  setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         loadPage(TableOfContents.pageNumber);
        // TextView contentCont = (TextView) findViewById(R.id.textView3);
        //         ((ScrollView) findViewById(R.id.scrollView)).addView(contentCont);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_page, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId())
+        {
+            case R.id.action_home:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
