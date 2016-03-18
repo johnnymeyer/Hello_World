@@ -3,6 +3,7 @@ package com.cs246.johnmeyer.hello;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Page extends AppCompatActivity {
@@ -32,6 +34,20 @@ public class Page extends AppCompatActivity {
         loadPage(TableOfContents.pageNumber);
        // TextView contentCont = (TextView) findViewById(R.id.textView3);
        //         ((ScrollView) findViewById(R.id.scrollView)).addView(contentCont);
+        Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
+
+        // button for left arrow
+        Button button5 = (Button)findViewById(R.id.button5);
+        button5.setTypeface(font);
+
+        // button for table of contents
+        Button button4 = (Button)findViewById(R.id.button4);
+        button4.setTypeface(font);
+
+        // button for right arrow
+        Button button3 = (Button)findViewById(R.id.button3);
+        button3.setTypeface(font);
+
     }
 
     @Override

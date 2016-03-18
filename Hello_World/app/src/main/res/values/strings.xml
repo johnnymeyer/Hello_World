@@ -6,4 +6,7 @@
     <string name="title_activity_page_instance">PageInstance</string>
     <string name="title_activity_page">Glew</string>
     <string name="action_home">Home</string>
+    <string name="action_left_arrow">&#xf190;</string>
+    <string name="action_menu_button">&#xf0ca;</string>
+    <string name="action_right_arrow">&#xf18e;</string>
 </resources>

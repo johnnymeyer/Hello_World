@@ -41,73 +41,43 @@
             android:textColor="#000000" />
     </ScrollView>
 
-    <!--<Button
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next Page"
+        android:text="@string/action_menu_button"
+        android:id="@+id/button4"
+        android:onClick="tableOfContents"
+        android:layout_below="@+id/scrollView"
+        android:layout_centerHorizontal="true"
+        android:textSize="32dp"
+        android:clickable="true" />
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_left_arrow"
+        android:id="@+id/button5"
+        android:layout_below="@+id/scrollView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="goBack"
+        android:textSize="32dp"
+        android:clickable="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_right_arrow"
         android:id="@+id/button3"
-        android:layout_marginBottom="39dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="goNext" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TOC"
-        android:id="@+id/button4"
-        android:onClick="tableOfContents"
-        android:layout_below="@+id/scrollView"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Prev Page"
-        android:id="@+id/button5"
-        android:layout_below="@+id/scrollView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="goBack" />-->
-
-    <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/button4"
-        android:layout_below="@+id/scrollView"
-        android:layout_centerHorizontal="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/toc"
-        android:layout_marginBottom="39dp"
-        android:onClick="tableOfContents"
-        android:clickable="true" />
-
-    <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/button5"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/arrowleft"
-        android:onClick="goBack"
-        android:clickable="true" />
-
-    <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/button3"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/scrollView"
-        android:layout_alignEnd="@+id/scrollView"
-        android:layout_marginBottom="39dp"
-        android:src="@drawable/arrowright"
+        android:layout_marginBottom="30dp"
+        android:textSize="32dp"
         android:onClick="goNext"
-        android:scaleType="fitXY"/>
-
-
+        android:clickable="true" />
 </RelativeLayout>
