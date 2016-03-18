@@ -2,6 +2,8 @@ package com.cs246.johnmeyer.hello;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +28,7 @@ public class Page extends AppCompatActivity {
         setContentView(R.layout.activity_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(Color.BLACK);
         loadPage(TableOfContents.pageNumber);
        // TextView contentCont = (TextView) findViewById(R.id.textView3);
        //         ((ScrollView) findViewById(R.id.scrollView)).addView(contentCont);
