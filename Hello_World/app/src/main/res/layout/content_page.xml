@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.cs246.johnmeyer.hello.Page"
-    tools:showIn="@layout/activity_page">
+    tools:showIn="@layout/activity_page"
+    android:onClick="goBack">
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,36 +42,42 @@
     </ScrollView>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next Page"
-        android:id="@+id/button3"
-        android:layout_marginBottom="39dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="goNext" />
-
-    <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TOC"
+        android:text="@string/action_menu_button"
         android:id="@+id/button4"
-        android:layout_alignTop="@+id/button3"
+        android:onClick="tableOfContents"
+        android:layout_below="@+id/scrollView"
         android:layout_centerHorizontal="true"
-        android:onClick="tableOfContents" />
+        android:textSize="32dp"
+        android:clickable="true" />
+
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prev Page"
+        android:text="@string/action_left_arrow"
         android:id="@+id/button5"
         android:layout_below="@+id/scrollView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="goBack" />
+        android:onClick="goBack"
+        android:textSize="32dp"
+        android:clickable="true" />
 
-
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_right_arrow"
+        android:id="@+id/button3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="30dp"
+        android:textSize="32dp"
+        android:onClick="goNext"
+        android:clickable="true" />
 </RelativeLayout>

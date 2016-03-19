@@ -1,10 +1,18 @@
 package com.cs246.johnmeyer.hello;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Page extends AppCompatActivity {
@@ -20,11 +28,43 @@ public class Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         data = new PageData();
         setContentView(R.layout.activity_page);
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-      //  setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(Color.BLACK);
         loadPage(TableOfContents.pageNumber);
        // TextView contentCont = (TextView) findViewById(R.id.textView3);
        //         ((ScrollView) findViewById(R.id.scrollView)).addView(contentCont);
+        Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
+
+        // button for left arrow
+        Button button5 = (Button)findViewById(R.id.button5);
+        button5.setTypeface(font);
+
+        // button for table of contents
+        Button button4 = (Button)findViewById(R.id.button4);
+        button4.setTypeface(font);
+
+        // button for right arrow
+        Button button3 = (Button)findViewById(R.id.button3);
+        button3.setTypeface(font);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_page, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId())
+        {
+            case R.id.action_home:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
