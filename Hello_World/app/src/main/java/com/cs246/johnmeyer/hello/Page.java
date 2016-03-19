@@ -21,7 +21,7 @@ public class Page extends AppCompatActivity {
     private String description;
     private PageData data;
     private float x1,x2;
-    static final int MIN_DISTANCE = 150;
+    static final int MIN_DISTANCE = 450;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,9 @@ public class Page extends AppCompatActivity {
         switch(item.getItemId())
         {
             case R.id.action_home:
-                startActivity(new Intent(this, MainActivity.class));
+               // startActivity(new Intent(this, MainActivity.class));
+                setResult(2);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

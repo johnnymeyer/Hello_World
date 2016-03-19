@@ -2,12 +2,15 @@ package com.cs246.johnmeyer.hello;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,6 +43,31 @@ public class TableOfContents extends AppCompatActivity {
         return adapter;
     }
 */
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toc, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId())
+        {
+            case R.id.action_home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode==2){
+            finish();
+        }
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
@@ -88,6 +116,9 @@ public class TableOfContents extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_of_contents);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolss);
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(Color.BLACK);
         ListView listView = (ListView) findViewById(R.id.listView);
         Cursor friendCursor = MainActivity.database.query(MainActivity.TABLE_NAME, new String[]
                 {"Info"}, "_id='2'", null, null, null, null);
@@ -117,7 +148,7 @@ public class TableOfContents extends AppCompatActivity {
         friendCursor.moveToFirst();
         String pageNum = friendCursor.getString(0);
         pageNumber = pageNum;
-        startActivity(new Intent(TableOfContents.this, Page.class));
+        startActivityForResult(new Intent(TableOfContents.this, Page.class), 1);
     }
 
 }

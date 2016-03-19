@@ -51,28 +51,9 @@ public class MainActivity extends AppCompatActivity {
         ////
         setContentView(R.layout.activity_main);
         ((ImageView)findViewById(R.id.imageView)).setImageResource(R.drawable.glewfrontpage);
-        fillFreinds();
-
 
     }
 
-    private void fillFreinds() {
-        Log.i(TAG, "We are reaching the database query.");
-        Cursor friendCursor = database.query(TABLE_NAME, new String[]{ID,
-                TITLE}, null, null, null, null, TITLE);
-
-        if (friendCursor == null)
-        {
-            Log.e(this.getClass().toString(), "Error: Query Sting is null.");
-        }
-        friendCursor.moveToFirst();
-        if(!friendCursor.isAfterLast()) {
-            do {
-                String name = friendCursor.getString(1);
-            } while (friendCursor.moveToNext());
-        }
-        friendCursor.close();
-    }
 
     /**
      * Function onTouchEvent
