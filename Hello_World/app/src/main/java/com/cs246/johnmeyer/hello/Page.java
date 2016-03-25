@@ -64,6 +64,7 @@ public class Page extends AppCompatActivity {
         if(databaseContains("Definitions", span.toString().substring(start, end))) {
             span.setSpan(new ClickableSpan() {
                 public String name = span.toString().substring(start, end);
+
                 @Override
                 public void onClick(View v) {
                     popUpDefinition(name);
@@ -83,8 +84,10 @@ public class Page extends AppCompatActivity {
         String query = "Word=\"" + element.trim().toLowerCase() + "\"";
         Cursor friendCursor = MainActivity.database.query(tableName, new String[]
                 {"Definition"}, query, null, null, null, null);
-        if(friendCursor == null || friendCursor.getCount() < 1) {
-          friendCursor.close();
+        if(friendCursor == null)
+            return false;
+        else if (friendCursor.getCount() < 1) {
+            friendCursor.close();
             return false;
         }
         else {
@@ -123,12 +126,12 @@ public class Page extends AppCompatActivity {
         int beginning = 0;
         for (int i = 0; i < text.length(); ++i) {
             if (text.charAt(i) != ' ' && text.charAt(i) != '<' && text.charAt(i) != '>') {
-                if (newWord == false) {
+                if (!newWord) {
                     newWord = true;
                     beginning = i;
                 }
             }
-            else if (newWord == true) {
+            else if (newWord) {
                 newWord = false;
                 setText(span, beginning, i);
             }
@@ -242,14 +245,6 @@ public class Page extends AppCompatActivity {
         content = myContent;
     }
 
-    public void fetchContent() {
-
-        if (title != null) {
-            String newContent = null;
-            //set string to material
-            setContent(newContent);
-        }
-    }
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
@@ -282,10 +277,10 @@ public class Page extends AppCompatActivity {
                     }
 
                 }
-                else
+              /*  else
                 {
                     // consider as something else - a screen tap for example
-                }
+                }*/
                 break;
         }
         return super.onTouchEvent(event);
@@ -295,5 +290,5 @@ public class Page extends AppCompatActivity {
         // Toast.makeText(this, "" + x1 + " " + x2, Toast.LENGTH_SHORT).show();
         onTouchEvent(ev);
         return super.dispatchTouchEvent(ev);
-    };
+    }
 }
