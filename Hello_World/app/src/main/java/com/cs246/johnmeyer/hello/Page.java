@@ -1,17 +1,25 @@
 package com.cs246.johnmeyer.hello;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -52,6 +60,84 @@ public class Page extends AppCompatActivity {
 
     }
 
+    public void setText(final Spannable span, final int start, final int end){
+        if(databaseContains("Definitions", span.toString().substring(start, end))) {
+            span.setSpan(new ClickableSpan() {
+                public String name = span.toString().substring(start, end);
+                @Override
+                public void onClick(View v) {
+                    popUpDefinition(name);
+                }
+
+                @Override
+                public void updateDrawState(TextPaint ds) {
+                    ds.setColor(Color.BLUE);
+                    ds.bgColor = 0xffeeeeee;
+                    // ds.setUnderlineText(false);
+                }
+            }, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+    }
+
+    public boolean databaseContains(String tableName, String element){
+        String query = "Word=\"" + element.trim().toLowerCase() + "\"";
+        Cursor friendCursor = MainActivity.database.query(tableName, new String[]
+                {"Definition"}, query, null, null, null, null);
+        if(friendCursor == null || friendCursor.getCount() < 1) {
+          friendCursor.close();
+            return false;
+        }
+        else {
+            friendCursor.close();
+            return true;
+        }
+    }
+
+    public String getDefinition(String tableName, String word){
+        String query = "Word=\"" + word.trim().toLowerCase() + "\"";
+        Cursor friendCursor = MainActivity.database.query(tableName, new String[]
+                {"Definition"}, query, null, null, null, null);
+        friendCursor.moveToFirst();
+        String def = friendCursor.getString(0);
+        friendCursor.close();
+        return def;
+    }
+
+    public void popUpDefinition(String definition) {
+        new AlertDialog.Builder(Page.this)
+                .setTitle("Definition")
+                .setMessage(getDefinition("Definitions", definition))
+                .setCancelable(false)
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Whatever...
+                    }
+                }).create().show();
+    }
+
+    public void setClickable(String text) {
+        TextView tv = (TextView)findViewById(R.id.textView3);
+        Spannable span = Spannable.Factory.getInstance().newSpannable(text);
+        boolean newWord = true;
+        int beginning = 0;
+        for (int i = 0; i < text.length(); ++i) {
+            if (text.charAt(i) != ' ' && text.charAt(i) != '<' && text.charAt(i) != '>') {
+                if (newWord == false) {
+                    newWord = true;
+                    beginning = i;
+                }
+            }
+            else if (newWord == true) {
+                newWord = false;
+                setText(span, beginning, i);
+            }
+        }
+        setText(span, beginning, text.length());
+        tv.setText(span);
+        tv.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_page, menu);
@@ -84,23 +170,32 @@ public class Page extends AppCompatActivity {
         else {
             String query = "_id=\"" + pageNum.trim() + "\"";
             Cursor friendCursor = MainActivity.database.query(MainActivity.TABLE_NAME, new String[]
-                    {"Title", "Info", "Prev_Page", "Next_Page"}, query, null, null, null, null);
+                    {"Title", "Info", "Prev_Page", "Next_Page", "Picture"}, query, null, null, null, null);
             friendCursor.moveToFirst();
             setMyTitle(friendCursor.getString(0));
             setContent(friendCursor.getString(1));
             friendCursor.getString(2);
             setPrevPage(friendCursor.getString(2));
             setNextPage(friendCursor.getString(3));
-
-            try {
-                GifDrawable gifDrawable = new GifDrawable(getResources(), R.drawable.whileloop);
-                ((GifImageView)findViewById(R.id.gifView)).setImageDrawable(gifDrawable);
+            String gif = friendCursor.getString(4);
+            if (gif != null) {
+                try {
+                    int lookup = getApplicationContext().getResources().getIdentifier("whileloop", "drawable",
+                            getApplicationContext().getPackageName());
+                    // imageView.setImageResource(id);
+                    GifDrawable gifDrawable = new GifDrawable(getResources(), lookup); // R.drawable.whileloop);
+                    ((GifImageView) findViewById(R.id.gifView)).setImageDrawable(gifDrawable);
+                }
+                catch (IOException e) {
+                    //
+                }
             }
-            catch(IOException e){
-                //
-            }
+            else
+                ((GifImageView) findViewById(R.id.gifView)).setImageDrawable(null);
+            friendCursor.close();
         }
     }
+
 
     /**
      * calls the load function for the previous page. This is used by the navigate back button.
@@ -142,7 +237,8 @@ public class Page extends AppCompatActivity {
     }
 
     public void setContent(String myContent) {
-        ((TextView)findViewById(R.id.textView3)).setText(myContent);
+        setClickable(myContent);
+        //((TextView)findViewById(R.id.textView3)).setText(myContent);
         content = myContent;
     }
 

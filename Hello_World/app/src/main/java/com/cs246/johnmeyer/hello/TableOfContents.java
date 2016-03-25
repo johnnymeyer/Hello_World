@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -112,10 +113,23 @@ public class TableOfContents extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(Color.BLACK);
         ListView listView = (ListView) findViewById(R.id.listView);
-        Cursor friendCursor = MainActivity.database.query(MainActivity.TABLE_NAME, new String[]
-                {"Info"}, "_id='2'", null, null, null, null);
-        friendCursor.moveToFirst();
-        String content = friendCursor.getString(0);
+        Cursor friendCursor;
+        String content = "";
+        try {
+            do {
+                friendCursor = MainActivity.database.query(MainActivity.TABLE_NAME, new String[]
+                        {"Info"}, "_id='2'", null, null, null, null);
+                if (friendCursor != null) {
+                    friendCursor.moveToFirst();
+                    content = friendCursor.getString(0);
+                }
+            } while (friendCursor == null);
+            friendCursor.close();
+        }
+        catch (NullPointerException e){
+            Log.d("onCreate TOC", "Error Loading");
+        }
+
         layout = new ArrayList<>(Arrays.asList(content.split("\\|")));
         adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
         listView.setAdapter(adapter);
@@ -135,10 +149,13 @@ public class TableOfContents extends AppCompatActivity {
     }
     void loadPage(String pageName){
         String query = "Title=\"" + pageName.trim() + "\"";
-        Cursor friendCursor = MainActivity.database.query(MainActivity.TABLE_NAME, new String[]
-                {"_id"}, query, null, null, null, null);
-        friendCursor.moveToFirst();
+        Cursor friendCursor;
+            friendCursor = MainActivity.database.query(MainActivity.TABLE_NAME, new String[]
+                    {"_id"}, query, null, null, null, null);
+            friendCursor.moveToFirst();
+
         String pageNum = friendCursor.getString(0);
+        friendCursor.close();
         pageNumber = pageNum;
         startActivityForResult(new Intent(TableOfContents.this, Page.class), 1);
     }
