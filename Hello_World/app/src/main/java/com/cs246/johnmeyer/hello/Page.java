@@ -180,7 +180,7 @@ public class Page extends AppCompatActivity {
             String gif = friendCursor.getString(4);
             if (gif != null) {
                 try {
-                    int lookup = getApplicationContext().getResources().getIdentifier("whileloop", "drawable",
+                    int lookup = getApplicationContext().getResources().getIdentifier(gif, "drawable",
                             getApplicationContext().getPackageName());
                     // imageView.setImageResource(id);
                     GifDrawable gifDrawable = new GifDrawable(getResources(), lookup); // R.drawable.whileloop);
