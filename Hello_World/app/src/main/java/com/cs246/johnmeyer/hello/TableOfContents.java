@@ -134,7 +134,7 @@ public class TableOfContents extends AppCompatActivity {
             Log.d("onCreate TOC", "Error Loading");
         }
         displayC = content;
-        layout = new ArrayList<>(Arrays.asList(content.split("\\|")));
+        layout = new ArrayList<>(Arrays.asList((displayC.replace("- ", "\t\t\t\t" )).split("\\|")));
         adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
         listView.setAdapter(adapter);
 
@@ -160,6 +160,7 @@ public class TableOfContents extends AppCompatActivity {
         int start;
         int end;
         int prev;
+        boolean wordFound = false;
         String word;
         if (item.contains("-")) {
             start = displayC.indexOf(item) + (item.length());
@@ -172,11 +173,12 @@ public class TableOfContents extends AppCompatActivity {
                 }
                 else {
 
-                    if (!databaseContains("Pages", word.trim().replace("- ", ""))) {
+                    if (!databaseContains("Pages", (word.trim().replace("- ", "")).replace("+", "-"))) {
                         end = prev;
                         break;
                     }
                     else {
+                        wordFound = true;
                         prev = end;
                         word = "";
                     }
@@ -185,18 +187,19 @@ public class TableOfContents extends AppCompatActivity {
             }
 
             ListView listView = (ListView) findViewById(R.id.listView);
-            displayC = displayC.replace(displayC.substring(start + 1, (end == displayC.length()) ? end : end + 1), "");
+            displayC = displayC.replace(displayC.substring(start + 1, (end == displayC.length() || !wordFound) ? end : end + 1), "");
             displayC = displayC.substring(0, start - 1) + "+" + displayC.substring(start);
-            layout = new ArrayList<>(Arrays.asList(displayC.split("\\|")));
+            layout = new ArrayList<>(Arrays.asList((displayC.replace("- ", "\t\t\t\t" )).split("\\|")));
             adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
             listView.setAdapter(adapter);
         }
         else if (item.contains("+")) {
-            start = displayC.indexOf(item) + (item.length());
-            displayC = displayC.substring(0, start - 1) + "+" + displayC.substring(start);
-            start = displayC.indexOf(item) + (item.length());
+            int startO = displayC.indexOf(item) + (item.length());
+            displayC = displayC.substring(0, startO - 1) + "-" + displayC.substring(startO);
+            start = temp.indexOf(item.replace("+", "-")) + (item.length());
             word = "";
             end = start + 1;
+
             prev = end;
             while (end < temp.length()) {
                 if (temp.charAt(end) != '|') {
@@ -204,7 +207,7 @@ public class TableOfContents extends AppCompatActivity {
                 }
                 else {
 
-                    if (!databaseContains("Pages", word.trim().replace("- ", ""))) {
+                    if (!databaseContains("Pages", (word.trim().replace("- ", "")).replace("+", "-"))){
                         end = prev;
                         break;
                     }
@@ -215,12 +218,12 @@ public class TableOfContents extends AppCompatActivity {
                 }
                 ++end;
             }
-            ListView listView = (ListView) findViewById(R.id.listView);
-            displayC = displayC.substring(0, start) + temp.substring(start + 1, (end == temp.length()? end : end + 1)) +
-                    (end == temp.length() ? displayC.substring(end + 1, displayC.length()) : "");
-            layout = new ArrayList<>(Arrays.asList(displayC.split("\\|")));
+         ListView listView = (ListView) findViewById(R.id.listView);
+         displayC = displayC.substring(0, startO) + temp.substring(start, end) + displayC.substring(startO);//(end == temp.length()? end : end + 1)) +
+            layout = new ArrayList<>(Arrays.asList((displayC.replace("- ", "\t\t\t\t" )).split("\\|")));
             adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
             listView.setAdapter(adapter);
+
         }
      //   Toast toast = Toast.makeText(getApplicationContext(), temp.charAt(start) + "-" + temp.charAt(end), Toast.LENGTH_LONG);
      //   toast.show();
