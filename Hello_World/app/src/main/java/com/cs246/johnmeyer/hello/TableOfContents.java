@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,6 +27,8 @@ public class TableOfContents extends AppCompatActivity {
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
     public static String pageNumber = null;
+    String content;
+    String displayC;
 
 /*
     public List<String> getLayout(){
@@ -114,7 +118,7 @@ public class TableOfContents extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.BLACK);
         ListView listView = (ListView) findViewById(R.id.listView);
         Cursor friendCursor;
-        String content = "";
+        content = "";
         try {
             do {
                 friendCursor = MainActivity.database.query(MainActivity.TABLE_NAME, new String[]
@@ -129,7 +133,7 @@ public class TableOfContents extends AppCompatActivity {
         catch (NullPointerException e){
             Log.d("onCreate TOC", "Error Loading");
         }
-
+        displayC = content;
         layout = new ArrayList<>(Arrays.asList(content.split("\\|")));
         adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
         listView.setAdapter(adapter);
@@ -142,11 +146,102 @@ public class TableOfContents extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String listPosition = String.valueOf(parent.getItemAtPosition(position));
                         listPosition = listPosition.trim().replace("- ", "");
-                        loadPage(listPosition);
+                        if (databaseContains("Pages", listPosition))
+                            loadPage(listPosition);
+                        else
+                            toggleItem(listPosition);
                     }
                 }
         );
     }
+
+    public void toggleItem (String item) {
+        String temp = content;
+        int start;
+        int end;
+        int prev;
+        String word;
+        if (item.contains("-")) {
+            start = displayC.indexOf(item) + (item.length());
+            word = "";
+            end = start + 1;
+            prev = end;
+            while (end < displayC.length()) {
+                if (displayC.charAt(end) != '|') {
+                    word += displayC.charAt(end);
+                }
+                else {
+
+                    if (!databaseContains("Pages", word.trim().replace("- ", ""))) {
+                        end = prev;
+                        break;
+                    }
+                    else {
+                        prev = end;
+                        word = "";
+                    }
+                }
+                ++end;
+            }
+
+            ListView listView = (ListView) findViewById(R.id.listView);
+            displayC = displayC.replace(displayC.substring(start + 1, (end == displayC.length()) ? end : end + 1), "");
+            displayC = displayC.substring(0, start - 1) + "+" + displayC.substring(start);
+            layout = new ArrayList<>(Arrays.asList(displayC.split("\\|")));
+            adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
+            listView.setAdapter(adapter);
+        }
+        else if (item.contains("+")) {
+            start = displayC.indexOf(item) + (item.length());
+            displayC = displayC.substring(0, start - 1) + "+" + displayC.substring(start);
+            start = displayC.indexOf(item) + (item.length());
+            word = "";
+            end = start + 1;
+            prev = end;
+            while (end < temp.length()) {
+                if (temp.charAt(end) != '|') {
+                    word += temp.charAt(end);
+                }
+                else {
+
+                    if (!databaseContains("Pages", word.trim().replace("- ", ""))) {
+                        end = prev;
+                        break;
+                    }
+                    else {
+                        prev = end;
+                        word = "";
+                    }
+                }
+                ++end;
+            }
+            ListView listView = (ListView) findViewById(R.id.listView);
+            displayC = displayC.substring(0, start) + temp.substring(start + 1, (end == temp.length()? end : end + 1)) +
+                    (end == temp.length() ? displayC.substring(end + 1, displayC.length()) : "");
+            layout = new ArrayList<>(Arrays.asList(displayC.split("\\|")));
+            adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
+            listView.setAdapter(adapter);
+        }
+     //   Toast toast = Toast.makeText(getApplicationContext(), temp.charAt(start) + "-" + temp.charAt(end), Toast.LENGTH_LONG);
+     //   toast.show();
+    }
+
+    public boolean databaseContains(String tableName, String element){
+        String query = "Title=\"" + element.trim() + "\"";
+        Cursor friendCursor = MainActivity.database.query(tableName, new String[]
+                {"Info"}, query, null, null, null, null);
+        if(friendCursor == null)
+            return false;
+        else if (friendCursor.getCount() < 1) {
+            friendCursor.close();
+            return false;
+        }
+        else {
+            friendCursor.close();
+            return true;
+        }
+    }
+
     void loadPage(String pageName){
         String query = "Title=\"" + pageName.trim() + "\"";
         Cursor friendCursor;
