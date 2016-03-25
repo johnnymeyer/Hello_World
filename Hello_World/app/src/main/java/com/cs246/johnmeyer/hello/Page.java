@@ -13,6 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
+
 public class Page extends AppCompatActivity {
     private String title;
     private String content;
@@ -86,6 +91,14 @@ public class Page extends AppCompatActivity {
             friendCursor.getString(2);
             setPrevPage(friendCursor.getString(2));
             setNextPage(friendCursor.getString(3));
+
+            try {
+                GifDrawable gifDrawable = new GifDrawable(getResources(), R.drawable.whileloop);
+                ((GifImageView)findViewById(R.id.gifView)).setImageDrawable(gifDrawable);
+            }
+            catch(IOException e){
+                //
+            }
         }
     }
 
