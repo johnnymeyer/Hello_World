@@ -1,10 +1,8 @@
 package com.cs246.johnmeyer.hello;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +16,6 @@ import android.widget.TextView;
 public class Page extends AppCompatActivity {
     private String title;
     private String content;
-    private String description;
     private PageData data;
     private float x1,x2;
     static final int MIN_DISTANCE = 450;

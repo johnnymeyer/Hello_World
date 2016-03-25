@@ -1,18 +1,14 @@
 package com.cs246.johnmeyer.hello;
 
 import android.database.sqlite.SQLiteOpenHelper;
-
-
-        import java.io.FileOutputStream;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.OutputStream;
-
-        import android.content.Context;
-        import android.database.SQLException;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.database.sqlite.SQLiteOpenHelper;
-        import android.util.Log;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import android.content.Context;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class LoadDataBase extends SQLiteOpenHelper {
 

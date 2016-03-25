@@ -1,7 +1,5 @@
 package com.cs246.johnmeyer.hello;
 
-import android.provider.BaseColumns;
-
 /**
  * Created by edoyle on 2/20/16.
  */
