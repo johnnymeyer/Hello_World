@@ -64,7 +64,9 @@
         android:layout_below="@+id/scrollView"
         android:layout_centerHorizontal="true"
         android:textSize="32dp"
-        android:clickable="true" />
+        android:clickable="true"
+        android:backgroundTint="#ffffff"
+        android:background="#ffffff" />
 
 
     <Button
@@ -78,7 +80,9 @@
         android:layout_alignParentStart="true"
         android:onClick="goBack"
         android:textSize="32dp"
-        android:clickable="true" />
+        android:clickable="true"
+        android:backgroundTint="#ffffff"
+        android:background="#ffffff" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -91,6 +95,8 @@
         android:clickable="true"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/scrollView"
-        android:layout_alignEnd="@+id/scrollView" />
+        android:layout_alignEnd="@+id/scrollView"
+        android:backgroundTint="#ffffff"
+        android:background="#ffffff" />
 
 </RelativeLayout>

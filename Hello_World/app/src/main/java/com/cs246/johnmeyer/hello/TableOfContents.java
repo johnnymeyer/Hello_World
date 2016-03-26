@@ -133,7 +133,7 @@ public class TableOfContents extends AppCompatActivity {
         catch (NullPointerException e){
             Log.d("onCreate TOC", "Error Loading");
         }
-        displayC = content;
+        displayC = "Loops +|Conditionals +|Functions +|";
         layout = new ArrayList<>(Arrays.asList((displayC.replace("- ", "\t\t\t\t" )).split("\\|")));
         adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
         listView.setAdapter(adapter);
@@ -223,7 +223,6 @@ public class TableOfContents extends AppCompatActivity {
             layout = new ArrayList<>(Arrays.asList((displayC.replace("- ", "\t\t\t\t" )).split("\\|")));
             adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
             listView.setAdapter(adapter);
-
         }
      //   Toast toast = Toast.makeText(getApplicationContext(), temp.charAt(start) + "-" + temp.charAt(end), Toast.LENGTH_LONG);
      //   toast.show();
