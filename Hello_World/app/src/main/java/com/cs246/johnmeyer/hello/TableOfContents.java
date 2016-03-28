@@ -133,7 +133,7 @@ public class TableOfContents extends AppCompatActivity {
         catch (NullPointerException e){
             Log.d("onCreate TOC", "Error Loading");
         }
-        displayC = "Loops +|Conditionals +|Functions +|";
+        displayC = "Loops +|Conditionals +|Functions +|Other +|";
         layout = new ArrayList<>(Arrays.asList((displayC.replace("- ", "\t\t\t\t" )).split("\\|")));
         adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
         listView.setAdapter(adapter);
@@ -245,16 +245,20 @@ public class TableOfContents extends AppCompatActivity {
     }
 
     void loadPage(String pageName){
-        String query = "Title=\"" + pageName.trim() + "\"";
-        Cursor friendCursor;
+        if(pageName.equals("Glossary"))
+            startActivityForResult(new Intent(TableOfContents.this, Glossary.class), 1);
+        else {
+            String query = "Title=\"" + pageName.trim() + "\"";
+            Cursor friendCursor;
             friendCursor = MainActivity.database.query(MainActivity.TABLE_NAME, new String[]
                     {"_id"}, query, null, null, null, null);
             friendCursor.moveToFirst();
 
-        String pageNum = friendCursor.getString(0);
-        friendCursor.close();
-        pageNumber = pageNum;
-        startActivityForResult(new Intent(TableOfContents.this, Page.class), 1);
+            String pageNum = friendCursor.getString(0);
+            friendCursor.close();
+            pageNumber = pageNum;
+            startActivityForResult(new Intent(TableOfContents.this, Page.class), 1);
+        }
     }
 
 }

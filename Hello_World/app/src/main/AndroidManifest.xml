@@ -30,6 +30,10 @@
             android:name=".Page"
             android:label="@string/title_activity_page"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Glossary"
+            android:label="@string/title_activity_glossary"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
