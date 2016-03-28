@@ -54,6 +54,10 @@ public class TableOfContents extends AppCompatActivity {
             case R.id.action_home:
                 finish();
                 return true;
+            case R.id.action_gloss:
+                startActivityForResult(new Intent(TableOfContents.this, Glossary.class), 1);
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -115,7 +119,7 @@ public class TableOfContents extends AppCompatActivity {
         setContentView(R.layout.activity_table_of_contents);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolss);
         setSupportActionBar(toolbar);
-        toolbar.setTitleTextColor(Color.BLACK);
+        toolbar.setTitleTextColor(Color.WHITE);
         ListView listView = (ListView) findViewById(R.id.listView);
         Cursor friendCursor;
         content = "";
@@ -133,7 +137,7 @@ public class TableOfContents extends AppCompatActivity {
         catch (NullPointerException e){
             Log.d("onCreate TOC", "Error Loading");
         }
-        displayC = "Loops +|Conditionals +|Functions +|Other +|";
+        displayC = "Loops +|Conditionals +|Functions +|Help +|";
         layout = new ArrayList<>(Arrays.asList((displayC.replace("- ", "\t\t\t\t" )).split("\\|")));
         adapter = new ArrayAdapter<>(TableOfContents.this, android.R.layout.simple_list_item_1, layout);
         listView.setAdapter(adapter);

@@ -40,7 +40,7 @@ public class Page extends AppCompatActivity {
         setContentView(R.layout.activity_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitleTextColor(Color.BLACK);
+        toolbar.setTitleTextColor(Color.WHITE);
         loadPage(TableOfContents.pageNumber);
        // TextView contentCont = (TextView) findViewById(R.id.textView3);
        //         ((ScrollView) findViewById(R.id.scrollView)).addView(contentCont);

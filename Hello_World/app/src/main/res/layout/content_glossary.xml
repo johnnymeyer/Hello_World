@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.cs246.johnmeyer.hello.Glossary"
-    tools:showIn="@layout/activity_glossary">
+    tools:showIn="@layout/activity_glossary"
+    android:background="#ffffff">
 
     <LinearLayout
         android:orientation="vertical"
@@ -23,11 +24,16 @@
             android:hint="Search"
             android:enabled="true"
             android:allowUndo="false"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:background="#ffffff"
+            android:backgroundTint="#ffffff"
+            android:drawableTint="#00e6e6"
+            android:foregroundTint="#00e6e6" />
         <ListView
             android:id="@+id/listview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#ffffff">
 
         </ListView>
     </LinearLayout>

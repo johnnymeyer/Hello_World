@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_home"
-        android:icon="@mipmap/home3"
+        android:icon="@mipmap/ic_home_white_48dp"
         android:title="Home"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_gloss"
+        android:icon="@mipmap/ic_help_white_48dp"
+        android:title="Glossary"
         app:showAsAction="always"/>
 </menu>

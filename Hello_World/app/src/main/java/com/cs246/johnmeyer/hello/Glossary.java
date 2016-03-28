@@ -36,7 +36,7 @@ public class Glossary extends AppCompatActivity {
         setContentView(R.layout.activity_glossary);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitleTextColor(Color.BLACK);
+        toolbar.setTitleTextColor(Color.WHITE);
         //itemListGenerator();
         listView = (ListView)findViewById(R.id.listview);
         editText = (EditText) findViewById(R.id.txtsearch);
