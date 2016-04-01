@@ -103,6 +103,7 @@ public class Glossary extends AppCompatActivity {
             friendCursor.moveToNext();
             itemString += name + "|";
         }
+        friendCursor.close();
        // items =  new String[]{"England", "MA", "Ed"};
        items = itemString.split("\\|");
     }

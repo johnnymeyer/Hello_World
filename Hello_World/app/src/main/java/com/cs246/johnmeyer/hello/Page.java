@@ -193,8 +193,10 @@ public class Page extends AppCompatActivity {
                     //
                 }
             }
-            else
+            else {
                 ((GifImageView) findViewById(R.id.gifView)).setImageDrawable(null);
+
+            }
             friendCursor.close();
         }
     }
