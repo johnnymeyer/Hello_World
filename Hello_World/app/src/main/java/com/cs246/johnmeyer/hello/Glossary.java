@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class Glossary extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ListView listView;
     EditText editText;
+    private boolean exactMatch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,7 @@ public class Glossary extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         //itemListGenerator();
+        exactMatch = true;
         listView = (ListView)findViewById(R.id.listview);
         editText = (EditText) findViewById(R.id.txtsearch);
         initList();
@@ -83,11 +86,22 @@ public class Glossary extends AppCompatActivity {
 
     public void searchItems (String text){
         for (String item: items){
-            if(!item.contains(text.toLowerCase()))
-                listItems.remove(item);
-            else if (!listItems.contains(item)) {
-                listItems.add(item);
-                Collections.sort(listItems);
+            if (exactMatch) {
+                if (!item.matches(text.toLowerCase() + "(.*)")) {
+                    listItems.remove(item);
+                }
+                else if (!listItems.contains(item)) {
+                    listItems.add(item);
+                    Collections.sort(listItems);
+                }
+            }
+            else {
+                if (!item.contains(text.toLowerCase()))
+                    listItems.remove(item);
+                else if (!listItems.contains(item)) {
+                    listItems.add(item);
+                    Collections.sort(listItems);
+                }
             }
         }
         adapter.notifyDataSetChanged();
@@ -106,6 +120,16 @@ public class Glossary extends AppCompatActivity {
         friendCursor.close();
        // items =  new String[]{"England", "MA", "Ed"};
        items = itemString.split("\\|");
+    }
+
+    public void toggleMatch (View v){
+        if (((RadioButton)(findViewById(R.id.radio_exact))).isChecked())
+            exactMatch = true;
+        else
+            exactMatch = false;
+        if (!editText.getText().toString().equals(""))
+            searchItems(editText.getText().toString());
+
     }
 
     public void initList(){

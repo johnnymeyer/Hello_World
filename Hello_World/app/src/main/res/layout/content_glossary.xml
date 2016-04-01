@@ -16,10 +16,11 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:onClick="toggleMatch">
         <EditText
             android:id="@+id/txtsearch"
-            android:layout_width="match_parent"
+            android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:hint="Search"
             android:enabled="true"
@@ -28,7 +29,27 @@
             android:background="#ffffff"
             android:backgroundTint="#ffffff"
             android:drawableTint="#00e6e6"
-            android:foregroundTint="#00e6e6" />
+            android:foregroundTint="#00e6e6"
+            android:textCursorDrawable="@drawable/color_cursor"/>
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_exact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exact Match"
+                android:onClick="toggleMatch"
+                android:checked="true"
+                android:background="#ffffff"
+                android:buttonTint="#00e6e6"/>
+            <RadioButton android:id="@+id/radio_partial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Partial Match"
+                android:onClick="toggleMatch"
+                android:buttonTint="#00e6e6"/>
+        </RadioGroup>
         <ListView
             android:id="@+id/listview"
             android:layout_width="match_parent"
