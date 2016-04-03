@@ -6,4 +6,9 @@
         android:icon="@mipmap/ic_toc_white_48dp"
         android:title="Table of Contents"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_home"
+        android:icon="@mipmap/ic_home_white_48dp"
+        android:title="Home"
+        app:showAsAction="always"/>
 </menu>
