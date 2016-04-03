@@ -2,6 +2,7 @@ package com.cs246.johnmeyer.hello;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -19,7 +20,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -155,6 +155,9 @@ public class Page extends AppCompatActivity {
                // startActivity(new Intent(this, MainActivity.class));
                 setResult(2);
                 finish();
+                return true;
+            case R.id.action_gloss:
+                startActivityForResult(new Intent(Page.this, Glossary.class), 1);
                 return true;
         }
         return super.onOptionsItemSelected(item);
